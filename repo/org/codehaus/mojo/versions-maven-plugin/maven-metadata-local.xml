@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>versions-maven-plugin</artifactId>
+  <versioning>
+    <latest>2.1-MOD</latest>
+    <release>2.1-MOD</release>
+    <versions>
+      <version>2.1</version>
+      <version>2.1-MOD</version>
+      <version>2.1-with-increment</version>
+    </versions>
+    <lastUpdated>20150311021458</lastUpdated>
+  </versioning>
+</metadata>

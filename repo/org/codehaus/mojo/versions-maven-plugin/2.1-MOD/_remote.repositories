@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Mar 11 03:14:58 CET 2015
+versions-maven-plugin-2.1-MOD.jar>=
+versions-maven-plugin-2.1-MOD.pom>=
