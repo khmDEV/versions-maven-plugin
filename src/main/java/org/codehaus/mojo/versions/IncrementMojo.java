@@ -24,6 +24,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.shared.release.versions.DefaultVersionInfo;
 import org.apache.maven.shared.release.versions.VersionInfo;
 import org.apache.maven.shared.release.versions.VersionParseException;
+import org.codehaus.mojo.versions.api.GitFuntions;
 
 /**
  * Increments the current project's version, updating the details of any child modules as necessary.
@@ -45,6 +46,12 @@ public class IncrementMojo
     }
 
     /**
+     * The Maven Project.
+     * @parameter expression="${offset}" default-value=0
+     */
+    private int offset;
+    
+    /**
      * Increment the version number.
      * 
      * @param version
@@ -52,17 +59,28 @@ public class IncrementMojo
      * @throws VersionParseException 
      */
     private String incrementVersion( String version ) throws VersionParseException {
-    	VersionInfo versionInfo = new DefaultVersionInfo(version);
-    	
+    	GitFuntions.setOffset(offset);
+    	VersionInfo versionInfo = new DefaultVersionInfo(gitIncrease(version));
+
     	if (versionInfo.isSnapshot())
     	{
-    		return versionInfo.getNextVersion().getSnapshotVersionString();
+    		return versionInfo.getSnapshotVersionString();
     	}
     	else
     	{
-    		return versionInfo.getNextVersion().getReleaseVersionString();
+    		return versionInfo.getReleaseVersionString();
     	}
 	}
+    
+    private String gitIncrease(String version){
+    	int com=GitFuntions.getVersion();
+    	for (int i = version.length()-1; i >= 0; i--) {
+			if(version.charAt(i)=='.'){
+				return version.substring(0, i+1)+com;
+			}
+		}
+    	return version;
+    }
 
 }
 

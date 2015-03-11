@@ -72,6 +72,11 @@ public class Property
     private boolean searchReactor;
 
     /**
+     * @parameter expression="${offset}" default-value=0
+     */
+    private int offset;
+    
+    /**
      * When {@link #searchReactor} is <code>true</code> and a property version can be entirely satisfied from the
      * reactor and this setting is <code>true</code> then the reactor version will be specified irrespective of any
      * other settings (including {@link #banSnapshots}).
@@ -105,6 +110,7 @@ public class Property
         this.searchReactor = true;
         this.preferReactor = true;
         this.version = null;
+        this.offset = 0;
     }
 
     public String getName()
@@ -115,6 +121,16 @@ public class Property
     public void setName( String name )
     {
         this.name = name;
+    }
+    
+    public int getOffset()
+    {
+        return offset;
+    }
+
+    public void setOffset( int offset )
+    {
+        this.offset = offset;
     }
 
     public String getVersion()

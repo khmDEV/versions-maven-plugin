@@ -188,6 +188,14 @@ public abstract class AbstractVersionsReport
     /**
      * Whether to allow snapshots when searching for the latest version of an artifact.
      *
+     * @parameter expression="${offset}" default-value=5
+     * @since 1.0-alpha-3
+     */
+    protected int offset;
+    
+    /**
+     * Whether to allow snapshots when searching for the latest version of an artifact.
+     *
      * @parameter expression="${allowSnapshots}" default-value="false"
      * @since 1.0-alpha-3
      */
@@ -362,6 +370,11 @@ public abstract class AbstractVersionsReport
         return i18n.getString( getOutputName(), locale, key );
     }
 
+    public int getOffset()
+    {
+        return this.offset;
+    }
+    
     public Boolean getAllowSnapshots()
     {
         return this.allowSnapshots;

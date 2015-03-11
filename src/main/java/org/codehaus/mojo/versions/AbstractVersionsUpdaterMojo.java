@@ -39,6 +39,7 @@ import org.apache.maven.project.path.PathTranslator;
 import org.apache.maven.settings.Settings;
 import org.codehaus.mojo.versions.api.ArtifactVersions;
 import org.codehaus.mojo.versions.api.DefaultVersionsHelper;
+import org.codehaus.mojo.versions.api.GitFuntions;
 import org.codehaus.mojo.versions.api.PomHelper;
 import org.codehaus.mojo.versions.api.PropertyVersions;
 import org.codehaus.mojo.versions.api.VersionsHelper;
@@ -50,6 +51,7 @@ import org.codehaus.stax2.XMLInputFactory2;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
@@ -75,7 +77,13 @@ public abstract class AbstractVersionsUpdaterMojo
      * @since 1.0-alpha-1
      */
     private MavenProject project;
-
+    
+    /**
+     * The Maven Project.
+     * @parameter expression="${offset}" default-value=0
+     */
+    private int offset;
+    
     /**
      * @component
      * @since 1.0-alpha-1
@@ -276,7 +284,8 @@ public abstract class AbstractVersionsUpdaterMojo
                                                  Boolean allowingSnapshots, boolean usePluginRepositories )
         throws ArtifactMetadataRetrievalException, MojoExecutionException
     {
-        boolean includeSnapshots = Boolean.TRUE.equals( this.allowSnapshots );
+        GitFuntions.setOffset(offset);
+    	boolean includeSnapshots = Boolean.TRUE.equals( this.allowSnapshots );
         if ( Boolean.TRUE.equals( allowingSnapshots ) )
         {
             includeSnapshots = true;

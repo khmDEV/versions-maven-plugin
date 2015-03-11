@@ -24,6 +24,7 @@ import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException
 import org.apache.maven.doxia.sink.Sink;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.reporting.MavenReportException;
+import org.codehaus.mojo.versions.api.GitFuntions;
 import org.codehaus.mojo.versions.utils.PluginComparator;
 import org.codehaus.plexus.util.StringUtils;
 
@@ -95,7 +96,7 @@ public class PluginUpdatesReport
         }
 
         plugins = removePluginManagment( plugins, pluginManagement );
-
+        GitFuntions.setOffset(getOffset());
         try
         {
             Map<Plugin, PluginUpdatesDetails> pluginUpdates =

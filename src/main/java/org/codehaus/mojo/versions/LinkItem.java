@@ -72,6 +72,14 @@ public class LinkItem
      * @since 1.0-alpha-1
      */
     private Boolean allowSnapshots = null;
+    
+    /**
+     * Override snapshot permisibility.
+     *
+     * @parameter
+     * @since 1.0-alpha-1
+     */
+    private int offset;
 
 // --------------------------- CONSTRUCTORS ---------------------------
 
@@ -85,6 +93,17 @@ public class LinkItem
     }
 
 // --------------------- GETTER / SETTER METHODS ---------------------
+
+    /**
+     * Getter for property 'offset'.
+     *
+     * @return Value for property 'offset'.
+     * @since 1.2-MOD
+     */
+    public int getOffset()
+    {
+        return offset;
+    }
 
     /**
      * Getter for property 'allowSnapshots'.
